@@ -4,7 +4,7 @@ export LANG="en_US.UTF-8"
 #
 if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
   ##### DISCOVERY #####
-  DEVICES=`iostat -d | awk '{print $1}' | sed -e '/^\([hsv]d[a-z]\)$/!d'`
+  DEVICES=`iostat -d | awk '{print $1}' | egrep '(nvme|sd|vd|hd|xvd)'`
   if [[ -n ${DEVICES} ]]; then
     JSON="{ \"data\":["
     SEP=""
